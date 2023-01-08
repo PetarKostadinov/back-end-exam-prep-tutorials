@@ -42,7 +42,7 @@ async function login(username, password) {
 
 }
 
-function createSession(_id, username) {
+function createSession({_id, username}) {
     const payload = {
         _id,
         username
@@ -55,7 +55,7 @@ function createSession(_id, username) {
 }
 
 function verifyToken(token) {
-    //console.log(jwt.verify(token, JWT_SECRET))
+    
     return jwt.verify(token, JWT_SECRET);
 }
 module.exports = {
