@@ -1,11 +1,12 @@
 
 const { body, validationResult } = require('express-validator');
+const { isGuest } = require('../middlewares/guards');
 const { register, login } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
 const authController = require('express').Router();
 
-authController.get('/register', (req, res) => {
+authController.get('/register', isGuest(), (req, res) => {
 
     //TODO replace with actual view  from assignment
     res.render('register', {
@@ -13,7 +14,7 @@ authController.get('/register', (req, res) => {
     });
 });
 
-authController.post('/register',
+authController.post('/register', isGuest(),
     body('username')
         .isLength({ min: 5 }).withMessage('Username must be atleast 5 characters long')
         .isAlphanumeric().withMessage('Username may contains only letters and numbers'),
@@ -52,13 +53,13 @@ authController.post('/register',
         }
     });
 
-authController.get('/login', (req, res) => {
+authController.get('/login', isGuest(), (req, res) => {
     res.render('login', {
         title: 'Login Page'
     });
 });
 
-authController.post('/login', async (req, res) => {
+authController.post('/login', isGuest(), async (req, res) => {
 
     try {
         const token = await login(req.body.username, req.body.password);
