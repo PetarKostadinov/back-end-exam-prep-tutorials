@@ -26,7 +26,7 @@ authController.post('/register', isGuest(),
         try {
             const { errors } = validationResult(req);
 
-            if(errors.length > 0){
+            if (errors.length > 0) {
                 throw errors;
             }
 

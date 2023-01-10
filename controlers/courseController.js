@@ -68,7 +68,6 @@ courseController.post('/:id/edit', async (req, res) => {
 
     if (course.owner.toString() != req.user._id.toString()) {
         return res.redirect('/auth/login');
-
     }
 
     try {

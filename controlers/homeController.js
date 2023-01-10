@@ -6,7 +6,6 @@ const homeController = require('express').Router();
 homeController.get('/', async (req, res) => {
     let view;
     let courses = [];
-    console.log(req.query)
 
     if (req.user) {
         view = 'user-home';
@@ -21,7 +20,6 @@ homeController.get('/', async (req, res) => {
         courses,
         search: req.query.search
     });
-
 });
 
 module.exports = homeController;

@@ -4,12 +4,11 @@ const Course = require("../models/Course");
 async function getAllByDate(search) {
     let query = {};
     if (search) {
-    
+
         query.title = new RegExp(search, 'i');
     }
 
     return Course.find(query).sort({ createdAt: 1 }).lean();
-
 }
 
 async function getRecent() {
@@ -55,5 +54,4 @@ module.exports = {
     deleteById,
     updateById,
     enrollUser
-
 }
